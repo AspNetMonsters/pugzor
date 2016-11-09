@@ -1,0 +1,11 @@
+{
+  "name": "pugzor",
+  "version": "1.0.0",
+  "description": "A pug based view engine for dotnet core mvc 1.0",
+  "main": "index.js",
+  "author": "ASP.NET Monsters",
+  "license": "MIT",
+  "dependencies": {
+    "pug": "^2.0.0-beta6"
+  }
+}
