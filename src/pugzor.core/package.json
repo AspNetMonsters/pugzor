@@ -1,0 +1,7 @@
+{
+  "name": "pugzor.core",
+  "version": "1.0.0",
+  "description": "Pug meets .net core",
+  "main": "index.js",
+  "license": "MIT"
+}
