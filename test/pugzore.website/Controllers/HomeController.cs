@@ -6,8 +6,8 @@ namespace pugzore.website.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["Model"] = new { name = "blragjkfdkjfsdsa" };
-            return View();
+   //         ViewData["Model"] = ;
+            return View(new { name = "blragjkfdkjfsdsa" });
         }
 
         public IActionResult About()
