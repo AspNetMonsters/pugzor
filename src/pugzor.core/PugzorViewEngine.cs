@@ -10,11 +10,11 @@ namespace pugzor.core
 {
     public class PugzorViewEngine : IViewEngine
     {
-        private INodeServices _nodeServices;
+        private IPugRendering _pugRendering;
 
-        public PugzorViewEngine(INodeServices nodeServices)
+        public PugzorViewEngine(IPugRendering pugRendering)
         {
-            _nodeServices = nodeServices;
+            _pugRendering = pugRendering;
         }
 
         public ViewEngineResult FindView(ActionContext context, string viewName, bool isMainPage)
