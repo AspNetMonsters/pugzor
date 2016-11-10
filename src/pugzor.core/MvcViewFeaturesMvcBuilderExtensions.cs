@@ -15,7 +15,7 @@ namespace pugzor.core
             }
 
             builder.Services.AddOptions();
-            ServiceDescriptor.Transient<IConfigureOptions<PugzorViewEngineOptions>, PugzorViewEngineOptionsSetup>();
+            builder.Services.AddTransient<IConfigureOptions<PugzorViewEngineOptions>, PugzorViewEngineOptionsSetup>();
 
             if (setupAction != null)
             {

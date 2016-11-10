@@ -11,8 +11,8 @@ namespace pugzor.core
 
         private static void Configure(PugzorViewEngineOptions options)
         {            
-            options.ViewLocationFormats.Add("Views/{1}/{0}.pug");
-            options.ViewLocationFormats.Add("Views/Shared/{0}.pug");
+            options.ViewLocationFormats.Add("Views/{1}/{0}" + PugzorViewEngine.ViewExtension);
+            options.ViewLocationFormats.Add("Views/Shared/{0}" + PugzorViewEngine.ViewExtension);
         }
     }    
 }

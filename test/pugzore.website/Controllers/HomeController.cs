@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GenFu;
+using Microsoft.AspNetCore.Mvc;
+using pugzore.website.Models;
 
 namespace pugzore.website.Controllers
 {
@@ -6,8 +8,7 @@ namespace pugzore.website.Controllers
     {
         public IActionResult Index()
         {
-   //         ViewData["Model"] = ;
-            return View(new { name = "blragjkfdkjfsdsa" });
+            return View(new { People = A.ListOf<Person>() });
         }
 
         public IActionResult About()

@@ -1,0 +1,38 @@
+﻿doctype html
+html
+	head
+		meta(charset='utf-8') 
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		title pugzore.website
+		link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.css')
+		link(rel='stylesheet', href='/css/site.css')
+	body
+
+
+	div(class='navbar navbar-inverse navbar-fixed-top')
+		div(class='container')
+			div(class='navbar-header')
+				button(type='button', class='navbar-toggle', data-toggle='collapse', data-target='.navbar-collapse')
+					span(class='sr-only') Toggle navigation
+					span(class='icon-bar')
+					span(class='icon-bar')
+					span(class='icon-bar')
+				a(href='/', class='navbar-brand') pugzore.website
+		div(class='navbar-collapse collapse')
+			ul(class='nav navbar-nav')
+				li
+					a(href='/') Home
+				li
+					a(href='/Home/About') About
+				li
+					a(href='/Home/Contact') Contact
+	div(class='container body-content')
+		block body
+		hr
+		footer
+			p &copy; 2016 - pugzore.website
+
+
+	script(src='/lib/jquery/dist/jquery.js')
+	script(src='/lib/bootstrap/dist/js/bootstrap.js')
+	script(src='/js/site.js')
