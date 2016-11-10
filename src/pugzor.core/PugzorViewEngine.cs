@@ -16,15 +16,12 @@ namespace pugzor.core
         public static readonly string ViewExtension = ".pug";
         private const string ControllerKey = "controller";
         private const string AreaKey = "area";
-        private List<string> ViewLocationFormats;
+        private PugzorViewEngineOptions _options;
 
-        public PugzorViewEngine(INodeServices nodeServices, IOptions<RazorViewEngineOptions> optionsAccessor)
-        {
-            ViewLocationFormats = new List<string> {
-                "Views/{1}/{0}.pug",
-                 "Views/Shared/{0}.pug"
-             };
-
+        public PugzorViewEngine(INodeServices nodeServices, 
+            IOptions<PugzorViewEngineOptions> optionsAccessor)
+        {            
+            _options = optionsAccessor.Value;
             _nodeServices = nodeServices;
         }
 
@@ -41,7 +38,7 @@ namespace pugzor.core
             var controllerName = GetNormalizedRouteValue(actionContext, ControllerKey);
             var areaName = GetNormalizedRouteValue(actionContext, AreaKey);
 
-            var view = string.Format(ViewLocationFormats[0], viewName, controllerName);
+            var view = string.Format(_options.ViewLocationFormats[0], viewName, controllerName);
                         
             return ViewEngineResult.Found("Default", new PugzorView(view, _nodeServices));
         }

@@ -29,7 +29,8 @@ namespace pugzor.core
 
         public async Task RenderAsync(ViewContext context)
         {
-            var result = await _nodeServices.InvokeAsync<string>("./pugcompile", Path, context.ViewData.Model);
+            var result = await _nodeServices.InvokeAsync<string>("./pugcompile", 
+                Path, context.ViewData.Model);
             context.Writer.Write(result);
         }
     }

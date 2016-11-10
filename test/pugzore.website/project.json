@@ -22,7 +22,8 @@
         "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
         "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
         "Microsoft.AspNetCore.NodeServices": "1.0.0-beta-000019",
-        "pugzor.core": "1.0.0-*"
+        "pugzor.core": "1.0.0-*",
+        "GenFu":  "1.2.1"
     },
 
   "tools": {
