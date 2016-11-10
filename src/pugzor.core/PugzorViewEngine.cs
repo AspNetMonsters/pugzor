@@ -12,20 +12,20 @@ namespace pugzor.core
 {
     public class PugzorViewEngine : IPugzorViewEngine
     {
-        private INodeServices _nodeServices;
+        private IPugRendering _pugRendering;
         public static readonly string ViewExtension = ".pug";
         private const string ControllerKey = "controller";
         private const string AreaKey = "area";
         private List<string> ViewLocationFormats;
 
-        public PugzorViewEngine(INodeServices nodeServices, IOptions<RazorViewEngineOptions> optionsAccessor)
+        public PugzorViewEngine(IPugRendering pugRendering, IOptions<RazorViewEngineOptions> optionsAccessor)
         {
             ViewLocationFormats = new List<string> {
                 "Views/{1}/{0}.pug",
                  "Views/Shared/{0}.pug"
              };
 
-            _nodeServices = nodeServices;
+            _pugRendering = pugRendering;
         }
 
         public ViewEngineResult FindView(ActionContext context, string viewName, bool isMainPage)
@@ -43,7 +43,7 @@ namespace pugzor.core
 
             var view = string.Format(ViewLocationFormats[0], viewName, controllerName);
                         
-            return ViewEngineResult.Found("Default", new PugzorView(view, _nodeServices));
+            return ViewEngineResult.Found("Default", new PugzorView(view, _pugRendering));
         }
 
         public ViewEngineResult GetView(string executingFilePath, string viewPath, bool isMainPage)
@@ -56,7 +56,7 @@ namespace pugzor.core
                 return ViewEngineResult.NotFound(viewPath, Enumerable.Empty<string>());
             }
 
-            return ViewEngineResult.Found("Default", new PugzorView("pug1.pug", _nodeServices));
+            return ViewEngineResult.Found("Default", new PugzorView("pug1.pug", _pugRendering));
         }
 
         public string GetAbsolutePath(string executingFilePath, string pagePath)

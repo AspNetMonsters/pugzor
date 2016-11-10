@@ -11,12 +11,13 @@ namespace pugzor.core
 {
     public class PugRendering : IPugRendering
     {
-        private string _tempDirectory;
         public INodeServices _nodeServices { get; set; }
-        public PugRendering(INodeServices nodeServices)
+        public IPugzorTempDirectoryProvider _tempDirectoryProvider;
+        public PugRendering(INodeServices nodeServices, IPugzorTempDirectoryProvider tempDirectoryProvider)
         {
             _nodeServices = nodeServices;
-            _tempDirectory = ExpandEmbeddedFiles();
+            _tempDirectoryProvider = tempDirectoryProvider;
+            ExpandEmbeddedFiles();
         }
 
         private string ExpandEmbeddedFiles()
@@ -26,23 +27,16 @@ namespace pugzor.core
 
             using (var stream = asm.GetManifestResourceStream(embeddedResourceName))
             {
-                var tempDirectory = GetTemporaryDirectory();
+                var tempDirectory = _tempDirectoryProvider.TempDirectory;
                 new ZipArchive(stream).ExtractToDirectory(tempDirectory);
                 return tempDirectory;
             }
 
         }
 
-        public string GetTemporaryDirectory()
-        {
-            string tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            Directory.CreateDirectory(tempDirectory);
-            return tempDirectory;
-        }
-
         public async Task<string> Render(FileInfo pugFile, object model)
         {
-            var result = await _nodeServices.InvokeAsync<string>(Path.Combine(_tempDirectory, "pugcompile.js"), pugFile.FullName, model);
+            var result = await _nodeServices.InvokeAsync<string>("pugcompile", pugFile.FullName, model);
             return result;
         }
     }
