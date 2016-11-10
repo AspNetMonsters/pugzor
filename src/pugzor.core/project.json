@@ -20,9 +20,9 @@
         "node_modules",
         "pubcompile.js"
       ],
-      "mappings": { 
-        "lib/pugcompile.js": "pugcompile.js",
-        "lib/node_modules": "node_modules"
+      "mappings": {
+        "lib/netstandard1.6/pugcompile.js": "pugcompile.js",
+        "lib/netstandard1.6/node_modules": "node_modules"
       }
     }
   }
