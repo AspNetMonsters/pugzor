@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "description": "Pug meets .net core",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "pug": "^2.0.0-beta6"
+  }
 }
