@@ -1,0 +1,11 @@
+﻿extends ../Shared/layout.pug
+
+block body
+	form
+		div(class='form-group')
+			label(for='FirstName') FirstName
+			input(type='text', class='form-control', id='FirstName', placeholder='FirstName', name='FirstName', value=firstName)
+		div(class='form-group')
+			label(for='LastName') FirstName
+			input(type='text', class='form-control', id='LastName', placeholder='LastName', name='LastName', value=lastName)
+		button(type='submit', class='btn btn-default') Submit  
