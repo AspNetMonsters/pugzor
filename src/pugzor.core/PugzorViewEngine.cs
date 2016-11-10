@@ -50,10 +50,10 @@ namespace pugzor.core
             if (!(IsApplicationRelativePath(viewPath) || IsRelativePath(viewPath)))
             {
                 // Not a path this method can handle.
-                return ViewEngineResult.NotFound(viewPath, Enumerable.Empty<string>());
+                return ViewEngineResult.NotFound(applicationRelativePath, Enumerable.Empty<string>());
             }
 
-            return ViewEngineResult.Found("Default", new PugzorView("pug1.pug", _pugRendering));
+            return ViewEngineResult.Found("Default", new PugzorView(applicationRelativePath, _nodeServices));
         }
 
         public string GetAbsolutePath(string executingFilePath, string pagePath)
@@ -67,7 +67,7 @@ namespace pugzor.core
             if (IsApplicationRelativePath(pagePath))
             {
                 // An absolute path already; no change required.
-                return pagePath;
+                return pagePath.Replace("~/", "");
             }
 
             if (!IsRelativePath(pagePath))
