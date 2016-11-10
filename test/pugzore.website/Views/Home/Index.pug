@@ -1,3 +1,9 @@
-﻿<h2>Hello #{name}</h2>
+﻿extends ../Shared/layout.pug
 
-<p>View from locator.</p>
+block body
+
+  h2 Hello
+  p Welcome to Pugzor!  
+  ul
+    each val in people
+      li= val.firstName
