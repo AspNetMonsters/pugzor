@@ -22,9 +22,15 @@ namespace pugzor.core
                 builder.Services.Configure(setupAction);
             }
 
-
             builder.Services.AddTransient<IConfigureOptions<MvcViewOptions>, PugzorMvcViewOptionsSetup>();
+            var tempDirectoryProvider = new PugzorTempDirectoryProvider();
+            builder.Services.AddSingleton<IPugzorTempDirectoryProvider>(tempDirectoryProvider);
+            builder.Services.AddTransient<IPugRendering, PugRendering>();
             builder.Services.AddSingleton<IPugzorViewEngine, PugzorViewEngine>();
+            builder.Services.AddNodeServices((options) =>
+            {
+                options.ProjectPath = tempDirectoryProvider.TempDirectory;
+            });
             return builder;
 
         }

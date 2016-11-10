@@ -5,18 +5,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.NodeServices;
+using System.IO;
 
 namespace pugzor.core
 {
     public class PugzorView : IView
     {
         private string _path;
-        private INodeServices _nodeServices;
+        private IPugRendering _pugRendering;
 
-        public PugzorView(string path, INodeServices nodeServices)
+        public PugzorView(string path, IPugRendering pugRendering)
         {
             _path = path;
-            _nodeServices = nodeServices;
+            _pugRendering = pugRendering;
         }
 
         public string Path
@@ -29,8 +30,7 @@ namespace pugzor.core
 
         public async Task RenderAsync(ViewContext context)
         {
-            var result = await _nodeServices.InvokeAsync<string>("./pugcompile", 
-                Path, context.ViewData.Model);
+            var result = await _pugRendering.Render(new FileInfo(Path), context.ViewData.Model);
             context.Writer.Write(result);
         }
     }
