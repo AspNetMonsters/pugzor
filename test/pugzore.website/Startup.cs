@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.AspNetCore.Mvc.Razor.TagHelpers;
 using System.Reflection;
+using Microsoft.AspNetCore.NodeServices;
 
 namespace pugzore.website
 {
@@ -33,9 +34,15 @@ namespace pugzore.website
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddMvc();
             services.AddNodeServices();
+            // Add framework services.
+            services.AddMvc().AddViewOptions(s =>
+            {
+                s.ViewEngines.Clear();
+                var serviceProvider = services.BuildServiceProvider();
+                var nodeServices = serviceProvider.GetRequiredService<INodeServices>();
+                s.ViewEngines.Add(new PugzorViewEngine(nodeServices));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

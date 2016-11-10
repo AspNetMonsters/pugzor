@@ -18,7 +18,7 @@ namespace pugzor.core
         }
 
         public ViewEngineResult FindView(ActionContext context, string viewName, bool isMainPage)
-        {
+        {            
             return ViewEngineResult.Found("Default", new PugzorView("pug1.pug", _nodeServices));
         }
 

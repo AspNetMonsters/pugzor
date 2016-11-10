@@ -29,8 +29,7 @@ namespace pugzor.core
 
         public async Task RenderAsync(ViewContext context)
         {
-            //TODO: Get the model? Not sure where it is on the ViewContext
-            var result = await _nodeServices.InvokeAsync<string>("./pugcompile", Path);
+            var result = await _nodeServices.InvokeAsync<string>("./pugcompile", Path, context.ViewData.Model);
             context.Writer.Write(result);
         }
     }
