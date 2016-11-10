@@ -15,7 +15,7 @@ namespace pugzore.website.Controllers
         {
             ViewData["Message"] = "Your application description page.";
 
-            return View();
+            return View("~/ViewsSoCrazy/crazy.pug");
         }
 
         public IActionResult Contact()
