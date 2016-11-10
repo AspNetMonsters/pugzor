@@ -36,13 +36,9 @@ namespace pugzore.website
         {
             services.AddNodeServices();
             // Add framework services.
-            services.AddMvc().AddViewOptions(s =>
-            {
-                s.ViewEngines.Clear();
-                var serviceProvider = services.BuildServiceProvider();
-                var nodeServices = serviceProvider.GetRequiredService<INodeServices>();
-                s.ViewEngines.Add(new PugzorViewEngine(nodeServices));
-            });
+            services.AddMvc()
+                .AddViewOptions(o => { o.ViewEngines.Clear(); })
+                .AddPugzor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

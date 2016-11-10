@@ -12,6 +12,13 @@ namespace pugzor.core
 {
     public class PugzorViewEngine : IPugzorViewEngine
     {
+<<<<<<< HEAD
+        private IPugRendering _pugRendering;
+
+        public PugzorViewEngine(IPugRendering pugRendering)
+        {
+            _pugRendering = pugRendering;
+=======
         private INodeServices _nodeServices;
         public static readonly string ViewExtension = ".pug";
         private const string ControllerKey = "controller";
@@ -26,6 +33,7 @@ namespace pugzor.core
              };
 
             _nodeServices = nodeServices;
+>>>>>>> 60f76ca1814adec1b1392dac53528033bfd64a62
         }
 
         public ViewEngineResult FindView(ActionContext context, string viewName, bool isMainPage)
