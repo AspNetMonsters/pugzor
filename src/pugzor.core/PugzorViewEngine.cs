@@ -1,14 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.ViewEngines;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.NodeServices;
 
 namespace pugzor.core
 {
-    public class PugzorViewEngine : IViewEngine
+    public class PugzorViewEngine : IPugzorViewEngine
     {
         private INodeServices _nodeServices;
 
