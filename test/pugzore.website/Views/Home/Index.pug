@@ -1,9 +1,17 @@
 ﻿extends ../Shared/layout.pug
 
 block body
-
-  h2 Hello
-  p Welcome to Pugzor!  
-  ul
-    each val in people
-      li= val.firstName
+	h2 Hello
+	p Welcome to Pugzor!  
+	table(class='table')
+		thead
+			tr
+				th Name
+				th Title
+				th Age
+		tbody
+			each val in people
+				tr
+					td= val.firstName
+					td= val.title
+					td= val.age
