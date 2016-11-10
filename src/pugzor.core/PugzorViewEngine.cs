@@ -2,6 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.NodeServices;
 using System.Diagnostics;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
 
 namespace pugzor.core
 {
@@ -11,61 +16,35 @@ namespace pugzor.core
         public static readonly string ViewExtension = ".pug";
         private const string ControllerKey = "controller";
         private const string AreaKey = "area";
+        private List<string> ViewLocationFormats;
 
-        public PugzorViewEngine(INodeServices nodeServices)
+        public PugzorViewEngine(INodeServices nodeServices, IOptions<RazorViewEngineOptions> optionsAccessor)
         {
+            ViewLocationFormats = new List<string> {
+                "Views/{1}/{0}.pug",
+                 "Views/Shared/{0}.pug"
+             };
+
             _nodeServices = nodeServices;
         }
 
         public ViewEngineResult FindView(ActionContext context, string viewName, bool isMainPage)
         {
-            return LocatePageFromViewLocations(context, viewName, isMainPage);
-            
+            return LocatePageFromViewLocations(context, viewName, isMainPage);            
         }
 
         private ViewEngineResult LocatePageFromViewLocations(
-    ActionContext actionContext,
-    string viewName,
-    bool isMainPage)
+            ActionContext actionContext,
+            string viewName,
+            bool isMainPage)
         {
             var controllerName = GetNormalizedRouteValue(actionContext, ControllerKey);
             var areaName = GetNormalizedRouteValue(actionContext, AreaKey);
 
-            //var expanderContext = new ViewLocationExpanderContext(
-            //    actionContext,
-            //    pageName,
-            //    controllerName,
-            //    areaName,
-            //    isMainPage);
-            //Dictionary<string, string> expanderValues = null;
-
-            //if (_options.ViewLocationExpanders.Count > 0)
-            //{
-            //    expanderValues = new Dictionary<string, string>(StringComparer.Ordinal);
-            //    expanderContext.Values = expanderValues;
-
-            //    // Perf: Avoid allocations
-            //    for (var i = 0; i < _options.ViewLocationExpanders.Count; i++)
-            //    {
-            //        _options.ViewLocationExpanders[i].PopulateValues(expanderContext);
-            //    }
-            //}
-
-
-            //ViewLocationCacheResult cacheResult;
-            //if (!ViewLookupCache.TryGetValue(cacheKey, out cacheResult))
-            //{
-            //    _logger.ViewLookupCacheMiss(cacheKey.ViewName, cacheKey.ControllerName);
-            //    cacheResult = OnCacheMiss(expanderContext, cacheKey);
-            //}
-            //else
-            //{
-            //    _logger.ViewLookupCacheHit(cacheKey.ViewName, cacheKey.ControllerName);
-            //}
-            
-            return ViewEngineResult.Found("Default", new PugzorView("pug1.pug", _nodeServices));
+            var view = string.Format(ViewLocationFormats[0], viewName, controllerName);
+                        
+            return ViewEngineResult.Found("Default", new PugzorView(view, _nodeServices));
         }
-
 
         public ViewEngineResult GetView(string executingFilePath, string viewPath, bool isMainPage)
         {
