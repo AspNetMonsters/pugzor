@@ -53,7 +53,7 @@ namespace pugzor.core
                 return ViewEngineResult.NotFound(applicationRelativePath, Enumerable.Empty<string>());
             }
 
-            return ViewEngineResult.Found("Default", new PugzorView(applicationRelativePath, _nodeServices));
+            return ViewEngineResult.Found("Default", new PugzorView(applicationRelativePath, _pugRendering));
         }
 
         public string GetAbsolutePath(string executingFilePath, string pagePath)

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,11 +11,11 @@ namespace pugzor.core
     [HtmlTargetElement("pugzor")]
     public class PugzorTagHelper : TagHelper
     {
-        private INodeServices _nodeServices;
+        public IPugRendering _pugRendering { get; set; }
 
-        public PugzorTagHelper(INodeServices nodeServices)
+        public PugzorTagHelper(IPugRendering pugRendering)
         {
-            _nodeServices = nodeServices;
+            _pugRendering = pugRendering;
         }
 
         [HtmlAttributeName("model")]
@@ -25,7 +26,7 @@ namespace pugzor.core
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
-            var result = await _nodeServices.InvokeAsync<string>("./pugcompile", View, Model);
+            var result = await _pugRendering.Render(new FileInfo(View), Model);
             output.TagName = null;
             output.Content.AppendHtml(result);
         }
