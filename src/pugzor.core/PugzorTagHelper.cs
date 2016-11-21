@@ -26,7 +26,7 @@ namespace pugzor.core
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
-            var result = await _pugRendering.Render(new FileInfo(View), Model);
+            var result = await _pugRendering.Render(new FileInfo(View), Model, null, null);
             output.TagName = null;
             output.Content.AppendHtml(result);
         }
