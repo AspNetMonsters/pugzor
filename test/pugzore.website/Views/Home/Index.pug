@@ -2,7 +2,8 @@
 
 block body
 	h2 Hello
-	p Welcome to Pugzor!  
+	-console.log(ViewData)
+	p #{ViewData.title} 
 	table(class='table')
 		thead
 			tr
@@ -15,3 +16,6 @@ block body
 					td= val.firstName
 					td= val.title
 					td= val.age
+	ul
+		each error in ModelState.model.errors
+			li #{error.errorMessage}

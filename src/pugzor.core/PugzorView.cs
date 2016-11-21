@@ -30,7 +30,7 @@ namespace pugzor.core
 
         public async Task RenderAsync(ViewContext context)
         {
-            var result = await _pugRendering.Render(new FileInfo(Path), context.ViewData.Model);
+            var result = await _pugRendering.Render(new FileInfo(Path), context.ViewData.Model, context.ViewData, context.ModelState);
             context.Writer.Write(result);
         }
     }

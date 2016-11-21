@@ -8,6 +8,8 @@ namespace pugzore.website.Controllers
     {
         public IActionResult Index()
         {
+            ViewData.Add("Title", "Welcome to Pugzor!");
+            ModelState.AddModelError("model", "An error has occurred");
             return View(new { People = A.ListOf<Person>() });
         }
 

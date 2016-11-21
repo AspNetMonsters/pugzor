@@ -6,6 +6,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.IO.Compression;
 using Microsoft.AspNetCore.NodeServices;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace pugzor.core
 {
@@ -34,9 +36,9 @@ namespace pugzor.core
 
         }
 
-        public async Task<string> Render(FileInfo pugFile, object model)
+        public async Task<string> Render(FileInfo pugFile, object model, ViewDataDictionary viewData, ModelStateDictionary modelState)
         {
-            var result = await _nodeServices.InvokeAsync<string>("pugcompile", pugFile.FullName, model);
+            var result = await _nodeServices.InvokeAsync<string>("pugcompile", pugFile.FullName, model, viewData, modelState);
             return result;
         }
     }
