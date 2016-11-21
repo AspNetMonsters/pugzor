@@ -13,6 +13,11 @@ namespace pugzore.website.Controllers
             return View(new { People = A.ListOf<Person>() });
         }
 
+        public IActionResult SharedLocation()
+        {
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
