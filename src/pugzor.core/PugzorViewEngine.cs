@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace pugzor.core
 {
@@ -27,7 +28,7 @@ namespace pugzor.core
 
         public ViewEngineResult FindView(ActionContext context, string viewName, bool isMainPage)
         {
-            return LocatePageFromViewLocations(context, viewName, isMainPage);            
+            return LocatePageFromViewLocations(context, viewName, isMainPage);
         }
 
         private ViewEngineResult LocatePageFromViewLocations(
@@ -38,9 +39,15 @@ namespace pugzor.core
             var controllerName = GetNormalizedRouteValue(actionContext, ControllerKey);
             var areaName = GetNormalizedRouteValue(actionContext, AreaKey);
 
-            var view = string.Format(_options.ViewLocationFormats[0], viewName, controllerName);
-                        
-            return ViewEngineResult.Found("Default", new PugzorView(view, _pugRendering));
+            var checkedLocations = new List<string>();
+            foreach (var location in _options.ViewLocationFormats)
+            {
+                var view = string.Format(location, viewName, controllerName);
+                if(File.Exists(view))
+                    return ViewEngineResult.Found("Default", new PugzorView(view, _pugRendering));
+                checkedLocations.Add(view);
+            }
+            return ViewEngineResult.NotFound(viewName, checkedLocations);
         }
 
         public ViewEngineResult GetView(string executingFilePath, string viewPath, bool isMainPage)
