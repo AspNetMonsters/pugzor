@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace pugzor.core
 {
-    public interface IPugzorTempDirectoryProvider
-    {
-        string TempDirectory { get; }
-    }
-
     public class PugzorTempDirectoryProvider : IPugzorTempDirectoryProvider
     {
         public string TempDirectory { get; private set; }
