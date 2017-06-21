@@ -1,13 +1,13 @@
-Pugor is the Pug view engine for ASP.NET Core. You might know pug by its previous name, Jade. You can read more about Pug over at their website: https://pugjs.org/api/getting-started.html
+Pugzor is the Pug view engine for ASP.NET Core. You might know Pug by its previous name, Jade. You can read more about Pug over at their website: https://pugjs.org/api/getting-started.html
 
-Pugzor works by passing your models directly to the node version of pug via Steve Sanderson's glorious JavaScript services. It is actually pretty performant and there are many optimizations still to be made. To use Pugzor you'll need to follow these easy steps
+Pugzor works by passing your models directly to the node version of Pug via Steve Sanderson's glorious [JavaScript Services](https://github.com/aspnet/JavaScriptServices). It is actually pretty performant and there are many optimizations still to be made. To use Pugzor, you'll need to follow these easy steps:
 
-1. Install the pugzor package from nuget
+1. Install the Pugzor package from NuGet
    
    ```
-    install-package pugzor
+    Install-Package pugzor
    ```
-2. Hook into pugzor in your setup.cs
+2. Hook into Pugzor in your Startup.cs
 
    ```
       public void ConfigureServices(IServiceCollection services)
@@ -17,9 +17,9 @@ Pugzor works by passing your models directly to the node version of pug via Stev
       }
    ```
    
-You can now add .pug files directly to your views directory along side the razor files. The model is available in your pug view directly, the view data and model state are attached as properties to the pug model. 
+You can now add .pug files directly to your Views directory alongside the Razor files. The model is available in your Pug view directly, the view data and model state are attached as properties to the pug model. 
 
-If your model looked like 
+If your model looked like this:
 
    ```
    {
@@ -27,7 +27,7 @@ If your model looked like
    }
    ```
 
-   and your view state  like 
+   and your view state looked like this:
 
    ```
    {
@@ -35,7 +35,7 @@ If your model looked like
    }
    ```
 
-   The result would be 
+   then the result would be:
 
    ```
    {
@@ -46,20 +46,20 @@ If your model looked like
    }
    ```
 
-#FAQ
+# FAQ
 
-###Is this a joke?
+### Is this a joke?
 
 It started off as one but it kind of worked okay so we rolled with it. 
 
-###Could I use it in production
+### Could I use it in production?
 
-Sure. I mean it is your production site do whatever you want. If you have a bunch of pug views already then this could help you transition to using an ASP.NET Core back end with little difficulty. I don't know that I'd start a whole new site off using it. 
+Sure. I mean it is your production site so do whatever you want. If you have a bunch of Pug views already, then this could help you transition to using an ASP.NET Core back end with little difficulty. I don't know that I'd start a whole new site off using it. 
 
-###What's the license?
+### What's the license?
 
 MIT
 
-###Did anybody actually ask these questions?
+### Did anybody actually ask these questions?
 
-No, We're just guessing at what people would ask. Thanks for reminding us how inconsiquential we are. 
+No, we're just guessing at what people would ask. Thanks for reminding us how inconsequential we are. 
