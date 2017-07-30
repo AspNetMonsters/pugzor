@@ -1,8 +1,8 @@
 ﻿using GenFu;
 using Microsoft.AspNetCore.Mvc;
-using pugzore.website.Models;
+using Pugzor.Website.Models;
 
-namespace pugzore.website.Controllers
+namespace Pugzor.Website.Controllers
 {
     public class HomeController : Controller
     {

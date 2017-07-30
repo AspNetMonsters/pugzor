@@ -1,12 +1,12 @@
 ﻿using GenFu;
 using Microsoft.AspNetCore.Mvc;
-using pugzore.website.Models;
+using Pugzor.Website.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace pugzore.website.Controllers
+namespace Pugzor.Website.Controllers
 {
     public class PersonController : Controller
     {
