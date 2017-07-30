@@ -1,18 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc.ViewEngines;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.NodeServices;
 using System.IO;
+using Pugzor.Core.Abstractions;
 
-namespace pugzor.core
+namespace Pugzor.Core
 {
     public class PugzorView : IView
     {
-        private string _path;
-        private IPugRendering _pugRendering;
+        private readonly string _path;
+        private readonly IPugRendering _pugRendering;
 
         public PugzorView(string path, IPugRendering pugRendering)
         {
@@ -20,17 +17,11 @@ namespace pugzor.core
             _pugRendering = pugRendering;
         }
 
-        public string Path
-        {
-            get
-            {
-                return _path;
-            }
-        }
+        public string Path => _path;
 
         public async Task RenderAsync(ViewContext context)
         {
-            var result = await _pugRendering.Render(new FileInfo(Path), context.ViewData.Model, context.ViewData, context.ModelState);
+            var result = await _pugRendering.Render(new FileInfo(Path), context.ViewData.Model, context.ViewData, context.ModelState).ConfigureAwait(false);
             context.Writer.Write(result);
         }
     }

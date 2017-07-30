@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ViewEngines;
 
-namespace pugzor.core
+namespace Pugzor.Core.Abstractions
 {
     public interface IPugzorViewEngine : IViewEngine
     {

@@ -4,8 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Pugzor.Core.Abstractions;
 
-namespace pugzor.core
+namespace Pugzor.Core
 {
     public class PugzorMvcViewOptionsSetup : IConfigureOptions<MvcViewOptions>
     {
@@ -17,12 +18,7 @@ namespace pugzor.core
         /// <param name="pugzorViewEngine">The <see cref="IPugzorViewEngine"/>.</param>
         public PugzorMvcViewOptionsSetup(IPugzorViewEngine pugzorViewEngine)
         {
-            if (pugzorViewEngine == null)
-            {
-                throw new ArgumentNullException(nameof(pugzorViewEngine));
-            }
-
-            _pugzorViewEngine = pugzorViewEngine;
+            _pugzorViewEngine = pugzorViewEngine ?? throw new ArgumentNullException(nameof(pugzorViewEngine));
         }
 
         /// <summary>

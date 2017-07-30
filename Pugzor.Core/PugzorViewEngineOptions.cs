@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace pugzor.core
+namespace Pugzor.Core
 {
     public class PugzorViewEngineOptions
     {
