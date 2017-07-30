@@ -7,8 +7,8 @@ namespace Pugzor.Test
     public class PathHelperTests
     {
         private const string RELATIVE_PATH = "this/is/relative.pug";
-        private const string ABSOLUTE_PATH_1 = "/this/is/absolue.pug";
-        private const string ABSOLUTE_PATH_2 = "~/this/is/absolue.pug";
+        private const string ABSOLUTE_PATH_1 = "/this/is/absolute.pug";
+        private const string ABSOLUTE_PATH_2 = "~/this/is/absolute.pug";
 
 
         [Fact]
