@@ -4,8 +4,8 @@ using Xunit;
 
 namespace Pugzor.UnitTests
 {
-    [Trait("Category", "TempDirectory")]
-    public class PugzorTempDirectoryProviderTests
+    [Trait("Category", "Helper")]
+    public class TempDirectoryHelperTests
     {
         [Fact]
         void Directory_Created_Exists()
