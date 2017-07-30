@@ -3,13 +3,12 @@ using Microsoft.AspNetCore.NodeServices;
 using Moq;
 using Pugzor.Core;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Pugzor.Core.Abstractions;
 using Pugzor.Core.Helpers;
 using Xunit;
 
-namespace Pugzor.UnitTests
+namespace Pugzor.Test
 {
     [Trait("Category", "Rendering")]
     public class PugRenderingTests : IClassFixture<PugRenderingTestsFixture>
