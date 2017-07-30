@@ -60,7 +60,7 @@ namespace Pugzor.UnitTests
             var mockServices = new Mock<IServiceProvider>();
             var nodeServiceOptions = new NodeServicesOptions(mockServices.Object)
             {
-                ProjectPath = TemporaryDirectoryHelper.CreateTemporaryDirectory()
+                ProjectPath = TemporaryDirectoryHelper.CreateTemporaryDirectory(true)
             };
             var nodeServices = NodeServicesFactory.CreateNodeServices(nodeServiceOptions);
             Renderer = new PugRendering(nodeServices);

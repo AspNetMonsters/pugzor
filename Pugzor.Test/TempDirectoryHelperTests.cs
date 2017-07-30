@@ -2,7 +2,7 @@
 using Pugzor.Core.Helpers;
 using Xunit;
 
-namespace Pugzor.UnitTests
+namespace Pugzor.Test
 {
     [Trait("Category", "Helper")]
     public class TempDirectoryHelperTests
@@ -10,7 +10,7 @@ namespace Pugzor.UnitTests
         [Fact]
         void Directory_Created_Exists()
         {
-            var path = TemporaryDirectoryHelper.CreateTemporaryDirectory();
+            var path = TemporaryDirectoryHelper.CreateTemporaryDirectory(true);
             var result = Directory.Exists(path);
             Assert.True(result);
         }

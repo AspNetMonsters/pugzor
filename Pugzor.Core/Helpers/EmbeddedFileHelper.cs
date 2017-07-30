@@ -1,4 +1,5 @@
-﻿using System.IO.Compression;
+﻿using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 
@@ -13,7 +14,19 @@ namespace Pugzor.Core.Helpers
 
             using (var stream = assembly.GetManifestResourceStream(embeddedResourceName))
             {
-                new ZipArchive(stream, ZipArchiveMode.Read, false).ExtractToDirectory(tempDirectory);
+                var archive = new ZipArchive(stream, ZipArchiveMode.Read, false);
+                var tempDir = new DirectoryInfo(tempDirectory);
+                foreach (var entry in archive.Entries)
+                {
+                    var filePath = $"{tempDir.FullName}\\{entry.FullName}";
+                    if (File.Exists(filePath))
+                    {
+                        continue;
+                    }
+
+                    Directory.CreateDirectory(new FileInfo(filePath).DirectoryName);
+                    entry.ExtractToFile(filePath, true);
+                }
             }
         }
     }

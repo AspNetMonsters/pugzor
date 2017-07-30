@@ -13,9 +13,9 @@ namespace Pugzor.Core.Helpers
 
         private static string CreateTemporaryDirectoryPath() => Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
-        public static string CreateTemporaryDirectory()
+        public static string CreateTemporaryDirectory(bool forceNew = false)
         {
-            _tempDirectory = _tempDirectory ?? CreateTemporaryDirectoryPath();
+            _tempDirectory = _tempDirectory == null || forceNew ? CreateTemporaryDirectoryPath() : _tempDirectory;
 
             if (!Directory.Exists(_tempDirectory))
             {
