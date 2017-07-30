@@ -8,7 +8,7 @@ It is actually pretty performant and there are many optimizations still to be ma
 
 1. Install the Pugzor package from NuGet
    
-   ```csharp
+   ```PowerShell
     Install-Package pugzor
    ```
 2. Hook into Pugzor in your Startup.cs
@@ -36,7 +36,7 @@ If your model looked like this:
 
    ```json
    {
-     "Countries" : [ "Canada", "..."]
+      "Countries" : [ "Canada", "..."]
    }
    ```
 
@@ -46,8 +46,8 @@ If your model looked like this:
    {
       "FirstName": "bill",
       "ViewState": {
-            "Countries" : [ "Canada", "..."]
-       } 
+         "Countries" : [ "Canada", "..."]
+      } 
    }
    ```
 
