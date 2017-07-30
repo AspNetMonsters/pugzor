@@ -16,8 +16,8 @@ namespace Pugzor.Core.Extensions
                 throw new ArgumentNullException(nameof(builder));
             }
 
-            builder.Services.AddOptions();
-            builder.Services.AddTransient<IConfigureOptions<PugzorViewEngineOptions>, PugzorViewEngineOptionsSetup>();
+            builder.Services.AddOptions()
+                            .AddTransient<IConfigureOptions<PugzorViewEngineOptions>, PugzorViewEngineOptionsSetup>();
 
             if (setupAction != null)
             {
@@ -34,7 +34,6 @@ namespace Pugzor.Core.Extensions
                 });
 
             return builder;
-
         }
     }
 }

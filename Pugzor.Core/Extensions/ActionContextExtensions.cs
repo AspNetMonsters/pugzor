@@ -22,10 +22,8 @@ namespace Pugzor.Core.Extensions
                 return null;
             }
 
-            var actionDescriptor = context.ActionDescriptor;
             string normalizedValue = null;
-
-            if (actionDescriptor.RouteValues.TryGetValue(key, out string value) && !string.IsNullOrEmpty(value))
+            if (context.ActionDescriptor.RouteValues.TryGetValue(key, out string value) && !string.IsNullOrEmpty(value))
             {
                 normalizedValue = value;
             }
