@@ -13,7 +13,7 @@ namespace Pugzor.Core.Helpers
                 return pagePath;
             }
 
-            if (IsApplicationRelativePath(pagePath))
+            if (IsAbsolutePath(pagePath))
             {
                 // An absolute path already; no change required.
                 return pagePath.Replace("~/", string.Empty);
@@ -33,9 +33,9 @@ namespace Pugzor.Core.Helpers
             return executingFilePath.Substring(0, index + 1) + pagePath;
         }
 
-        public static bool IsApplicationRelativePath(string name) => name.StartsWith("~") || name.StartsWith("/");
+        public static bool IsAbsolutePath(string name) => name.StartsWith("~/") || name.StartsWith("/");
 
         // Though ./ViewName looks like a relative path, framework searches for that view using view locations.
-        public static bool IsRelativePath(string name) => name.EndsWith(VIEW_EXTENSION, StringComparison.OrdinalIgnoreCase);
+        public static bool IsRelativePath(string name) => !IsAbsolutePath(name);
     }
 }
