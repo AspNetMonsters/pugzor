@@ -35,6 +35,7 @@ namespace Pugzor.Core
                 var view = string.Format(location, viewName, controllerName);
                 if (File.Exists(view))
                 {
+                    // ReSharper disable once Mvc.ViewNotResolved
                     return ViewEngineResult.Found("Default", new PugzorView(view, _pugRendering));
                 }
                 checkedLocations.Add(view);
@@ -53,6 +54,7 @@ namespace Pugzor.Core
                 return ViewEngineResult.NotFound(applicationRelativePath, Enumerable.Empty<string>());
             }
 
+            // ReSharper disable once Mvc.ViewNotResolved
             return ViewEngineResult.Found("Default", new PugzorView(applicationRelativePath, _pugRendering));
         }
     }
