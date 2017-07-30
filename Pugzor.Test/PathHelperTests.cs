@@ -23,7 +23,6 @@ namespace Pugzor.Test
         public void PathHelperIsRelativePath_WithNonRelativePath_ReturnsFalse(string path)
         {
             Assert.False(PathHelper.IsRelativePath(path));
-            Assert.False(PathHelper.IsRelativePath(path));
         }
 
         [Theory]
