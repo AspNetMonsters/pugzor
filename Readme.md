@@ -27,9 +27,10 @@ The model is available in your Pug view directly, the view data and model state 
 
 If your model looked like this:
 
-   ```json
+   ```csharp
+   public class Model
    {
-   "FirstName": "bill"
+      public string FirstName = "name";
    }
    ```
 
@@ -42,7 +43,7 @@ You would access the model like this:
 The ViewDataDictionary is accessible like this:
 
    ```pug
-   p #{ViewData.KEY'}
+   p #{ViewData.KEY}
    ```
    
 The ModelStateDictionary is accessible like this:
