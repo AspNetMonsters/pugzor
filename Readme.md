@@ -1,15 +1,19 @@
-Pugzor is the Pug view engine for ASP.NET Core. You might know Pug by its previous name, Jade. You can read more about Pug over at their website: https://pugjs.org/api/getting-started.html
+Pugzor is the Pug view engine for ASP.NET Core. You might know Pug by its previous name, Jade.  
+You can read more about Pug over at their website: https://pugjs.org/api/getting-started.html
 
-Pugzor works by passing your models directly to the node version of Pug via Steve Sanderson's glorious [JavaScript Services](https://github.com/aspnet/JavaScriptServices). It is actually pretty performant and there are many optimizations still to be made. To use Pugzor, you'll need to follow these easy steps:
+Pugzor works by passing your models directly to the node version of Pug via Steve Sanderson's glorious [JavaScript Services](https://github.com/aspnet/JavaScriptServices).  
+It is actually pretty performant and there are many optimizations still to be made.
+
+# Instructions
 
 1. Install the Pugzor package from NuGet
    
-   ```
+   ```PowerShell
     Install-Package pugzor
    ```
 2. Hook into Pugzor in your Startup.cs
 
-   ```
+   ```csharp
       public void ConfigureServices(IServiceCollection services)
       {
             // Add framework services.
@@ -17,11 +21,12 @@ Pugzor works by passing your models directly to the node version of Pug via Stev
       }
    ```
    
-You can now add .pug files directly to your Views directory alongside the Razor files. The model is available in your Pug view directly, the view data and model state are attached as properties to the pug model. 
+You can now add .pug files directly to your Views directory alongside the Razor files.  
+The model is available in your Pug view directly, the view data and model state are attached as properties to the pug model. 
 
 If your model looked like this:
 
-   ```
+   ```json
    {
       "FirstName": "bill"
    }
@@ -29,20 +34,20 @@ If your model looked like this:
 
    and your view state looked like this:
 
-   ```
+   ```json
    {
-     "Countries" : [ "Canada",...]
+      "Countries" : [ "Canada", "..."]
    }
    ```
 
    then the result would be:
 
-   ```
+   ```json
    {
       "FirstName": "bill",
       "ViewState": {
-            "Countries" : [ "Canada",...]
-       } 
+         "Countries" : [ "Canada", "..."]
+      } 
    }
    ```
 
