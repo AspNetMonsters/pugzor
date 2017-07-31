@@ -14,11 +14,12 @@ It is actually pretty performant and there are many optimizations still to be ma
 2. Hook into Pugzor in your Startup.cs
 
    ```csharp
-      public void ConfigureServices(IServiceCollection services)
-      {
-            // Add framework services.
-            services.AddMvc().AddPugzor();
-      }
+   public void ConfigureServices(IServiceCollection services)
+   {
+         // Add framework services.
+         services.AddMvc()
+                 .AddPugzor();
+   }
    ```
 # How to access your model
 
