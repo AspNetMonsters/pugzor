@@ -38,6 +38,18 @@ You would access the model like this:
    ```pug
    p #{FirstName}
    ```
+   
+The ViewDataDictionary is accessible like this:
+
+   ```pug
+   p #{ViewData.KEY'}
+   ```
+   
+The ModelStateDictionary is accessible like this:
+
+   ```pug
+   p #{ModelState.KEY.errors[INDEX].errorMessage}
+   ```
 
 # FAQ
 
