@@ -1,4 +1,5 @@
-﻿using Pugzor.Core.Helpers;
+﻿using System.Collections.Generic;
+using Pugzor.Core.Helpers;
 using Xunit;
 
 namespace Pugzor.Test
@@ -6,37 +7,27 @@ namespace Pugzor.Test
     [Trait("Category", "Helper")]
     public class PathHelperTests
     {
-        private const string RELATIVE_PATH = "this/is/relative.pug";
-        private const string ABSOLUTE_PATH_1 = "/this/is/absolute.pug";
-        private const string ABSOLUTE_PATH_2 = "~/this/is/absolute.pug";
+        public static IEnumerable<object[]> Paths =
+            new List<object[]>
+            {
+                new object[]{ "/this/is/absolute.pug", true },
+                new object[]{ "~/this/is/absolute.pug", true },
+                new object[]{ "this/is/relative.pug", false }
+            };
 
 
-        [Fact]
-        public void PathHelperIsRelativePath_WithRelativePath_ReturnsTrue()
+        [Theory]
+        [MemberData(nameof(Paths))]
+        public void PathHelperIsRelativePath_WithPath_ReturnsCorrectValue(string path, bool expectedResult)
         {
-            Assert.True(PathHelper.IsRelativePath(RELATIVE_PATH));
+            Assert.Equal(!expectedResult, PathHelper.IsRelativePath(path));
         }
 
         [Theory]
-        [InlineData(ABSOLUTE_PATH_1)]
-        [InlineData(ABSOLUTE_PATH_2)]
-        public void PathHelperIsRelativePath_WithNonRelativePath_ReturnsFalse(string path)
+        [MemberData(nameof(Paths))]
+        public void PathHelperIsAbsolutePath_WithPath_ReturnsCorrectValue(string path, bool expectedResult)
         {
-            Assert.False(PathHelper.IsRelativePath(path));
-        }
-
-        [Theory]
-        [InlineData(ABSOLUTE_PATH_1)]
-        [InlineData(ABSOLUTE_PATH_2)]
-        public void PathHelperIsAbsolutePath_WithAbsolutePath_ReturnsTrue(string path)
-        {
-            Assert.True(PathHelper.IsAbsolutePath(path));
-        }
-
-        [Fact]
-        public void PathHelperIsAbsolutePath_WithNonAbsolutePath_ReturnsTrue()
-        {
-            Assert.False(PathHelper.IsAbsolutePath(RELATIVE_PATH));
+            Assert.Equal(expectedResult, PathHelper.IsAbsolutePath(path));
         }
     }
 }
