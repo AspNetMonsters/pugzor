@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/njbb56ee6h7r15fy?svg=true)](https://ci.appveyor.com/project/DavidPaquette/pugzor)
+
 Pugzor is the Pug view engine for ASP.NET Core. You might know Pug by its previous name, Jade.  
 You can read more about Pug over at their website: https://pugjs.org/api/getting-started.html
 
