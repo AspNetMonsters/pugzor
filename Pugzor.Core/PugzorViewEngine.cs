@@ -48,7 +48,7 @@ namespace Pugzor.Core
         {
             var applicationRelativePath = PathHelper.GetAbsolutePath(executingFilePath, viewPath);
 
-            if (!(PathHelper.IsAbsolutePath(viewPath) || PathHelper.IsRelativePath(viewPath)))
+            if (!PathHelper.IsAbsolutePath(viewPath))
             {
                 // Not a path this method can handle.
                 return ViewEngineResult.NotFound(applicationRelativePath, Enumerable.Empty<string>());
