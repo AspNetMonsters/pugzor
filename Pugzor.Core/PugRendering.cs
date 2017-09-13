@@ -12,21 +12,21 @@ namespace Pugzor.Core
     public class PugRendering : IPugRendering
     {
         private readonly INodeServices _nodeServices;
-        private PugzorViewEngineOptions Options;
+        private PugzorViewEngineOptions _options;
 
         public PugRendering(INodeServices nodeServices, IOptions<PugzorViewEngineOptions> options)
         {
             _nodeServices = nodeServices;
             var tempDirectory = TemporaryDirectoryHelper.CreateTemporaryDirectory();
             EmbeddedFileHelper.ExpandEmbeddedFiles(tempDirectory);
-            Options = options.Value;
+            _options = options.Value;
         }
 
         public async Task<string> Render(FileInfo pugFile, object model, ViewDataDictionary viewData, ModelStateDictionary modelState) =>
             await _nodeServices.InvokeAsync<string>("pugcompile", pugFile.FullName, model, viewData, modelState, new
             {
-                pretty = Options.Pretty ? "\t" : null,
-                basedir = Options.BaseDir
+                pretty = _options.Pretty ? "\t" : null,
+                basedir = _options.BaseDir
             })
             .ConfigureAwait(false);
     }
