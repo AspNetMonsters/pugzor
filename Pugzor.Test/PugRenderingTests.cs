@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Pugzor.Core.Abstractions;
 using Pugzor.Core.Helpers;
 using Xunit;
+using Microsoft.Extensions.Options;
 
 namespace Pugzor.Test
 {
@@ -93,13 +94,22 @@ namespace Pugzor.Test
 
         public PugRenderingTestsFixture()
         {
+            var optionsMock = new Mock<IOptions<PugzorViewEngineOptions>>();
+
+            optionsMock.SetupGet(q => q.Value)
+                .Returns(new PugzorViewEngineOptions
+                {
+                    // true: makes a lot of tests to fail
+                    Pretty = false
+                });
+
             var mockServices = new Mock<IServiceProvider>();
             var nodeServiceOptions = new NodeServicesOptions(mockServices.Object)
             {
                 ProjectPath = TemporaryDirectoryHelper.CreateTemporaryDirectory(true)
             };
             var nodeServices = NodeServicesFactory.CreateNodeServices(nodeServiceOptions);
-            Renderer = new PugRendering(nodeServices);
+            Renderer = new PugRendering(nodeServices, optionsMock.Object);
         }
     }
 }

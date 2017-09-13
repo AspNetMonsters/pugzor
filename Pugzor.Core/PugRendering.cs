@@ -22,12 +22,17 @@ namespace Pugzor.Core
             _options = options.Value;
         }
 
-        public async Task<string> Render(FileInfo pugFile, object model, ViewDataDictionary viewData, ModelStateDictionary modelState) =>
-            await _nodeServices.InvokeAsync<string>("pugcompile", pugFile.FullName, model, viewData, modelState, new
+        public async Task<string> Render(FileInfo pugFile, object model, ViewDataDictionary viewData, ModelStateDictionary modelState)
+        {
+            var opts = _options != null ? new
             {
                 pretty = _options.Pretty ? "\t" : null,
                 basedir = _options.BaseDir
-            })
-            .ConfigureAwait(false);
+            } : new object();
+
+            return await _nodeServices
+                .InvokeAsync<string>("pugcompile", pugFile.FullName, model, viewData, modelState, opts)
+                .ConfigureAwait(false);
+        }
     }
 }
